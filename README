@@ -1,0 +1,47 @@
+Install node with nvm (node version manager)
+Instalar con nvm (Gestor de versiones de node) la versión de node 
+
+nvm list available
+nvm install 18.9.0;nvm use 18.9.0;npm install;
+
+Create node project
+crear proyecto node:
+    npm init -y
+    npm install express --save
+
+Build image
+construir la imagen
+    docker build . -t andresgarcia0313/app:0.0.0;docker build . -t andresgarcia0313/app:latest
+
+Run the image
+Correr la imagen
+    docker run --name app1 -p 3000:80 -d andresgarcia0313/app:0.0.0
+Obtener id del contenedor corriendo
+    docker ps -qf "name=app1"
+
+Ver el registro de eventos del sistema o logs de consola de la aplicación
+    docker logs (docker ps -qf "name=app1")
+    Mostrara algo como:
+        Aplicación escuchando por el puerto 80
+
+Ingresar a la consola de comandos del contenedor linux:
+    docker exec -it (docker ps -qf "name=app1") /bin/bash
+    docker exec -it (docker ps -qf "name=app1") /bin/sh
+
+Testear con curl en PowerShell
+    (curl -URI http://localhost:3000/).content
+    (Invoke-WebRequest -URI http://localhost:3000/).content
+
+Testear con curl de linux
+    curl -i http://localhost:3000/
+    curl http://localhost:3000/
+
+Apagar el contenedor que corre a partir de la imagen
+    docker kill (docker ps -qf "name=app1")
+
+Confirmar que el contenedor no este en funcionamiento
+    curl -i localhost:3000
+
+Remover el contenedor y la imagen
+    docker rm app1
+    docker rmi andresgarcia0313/app:0.0.0
